@@ -1,265 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A Journey into 2026</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Message for You ✨</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-      :root {
-        --primary: #ff4d6d;
-        --gold: #d4af37;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        height: 100vh;
-        background: #0a0a1a;
-        font-family: "Poppins", sans-serif;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-      }
-
-      #bg-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
-        z-index: -1;
-      }
-
-      .container {
-        width: 90%;
-        max-width: 450px;
-        text-align: center;
-        padding: 30px;
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-      }
-
-      h1 {
-        font-family: "Dancing Script", cursive;
-        font-size: 2.5rem;
-        color: var(--gold);
-      }
-      p {
-        line-height: 1.6;
-        font-size: 1.1rem;
-        min-height: 3em;
-      }
-
-      .btn {
-        padding: 15px 30px;
-        border: none;
-        border-radius: 50px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.3s;
-        background: var(--primary);
-        color: white;
-        box-shadow: 0 5px 20px rgba(255, 77, 109, 0.4);
-      }
-
-      .btn:hover {
-        transform: scale(1.05);
-        background: #ff758f;
-      }
-
-      .hidden {
-        display: none;
-      }
-
-      #noBtn {
-        background: #444;
-        position: absolute;
-      }
-
-      /* Slide Transition */
-      .fade-in {
-        animation: fadeIn 1s forwards;
-      }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
+        :root { --accent: #ff007f; --gold: #ffd700; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; height: 100vh; background: #0a0a0a;
+            font-family: 'Poppins', sans-serif; color: white;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden;
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
+        #bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #2b001d 0%, #000000 100%);
+            z-index: -1;
         }
-      }
-
-      /* Floating Orbs */
-      .orb {
-        position: absolute;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle,
-          rgba(255, 255, 255, 0.1) 0%,
-          transparent 70%
-        );
-        filter: blur(20px);
-        z-index: -1;
-        animation: move 20s infinite linear;
-      }
-      @keyframes move {
-        from {
-          transform: translate(0, 0);
+        .card {
+            width: 90%; max-width: 400px; padding: 40px;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(20px); border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            transition: all 0.8s ease;
         }
-        to {
-          transform: translate(100vw, 100vh);
+        h1 { font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: var(--gold); margin-bottom: 20px; }
+        .poem-line { font-size: 1.1rem; line-height: 1.8; color: #eee; font-style: italic; display: block; margin-bottom: 10px; }
+        .btn {
+            background: var(--accent); color: white; border: none;
+            padding: 15px 35px; border-radius: 50px; font-weight: 600;
+            font-size: 1rem; cursor: pointer; transition: 0.3s;
+            margin-top: 20px;
         }
-      }
+        .hidden { display: none; opacity: 0; }
+        .visible { display: block; opacity: 1; }
+        
+        .insta-btn {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            box-shadow: 0 10px 20px rgba(220, 39, 67, 0.4);
+        }
     </style>
-  </head>
-  <body>
-    <div id="bg-canvas"></div>
+</head>
+<body>
+    <div id="bg"></div>
 
-    <div id="slide1" class="container fade-in">
-      <h1>Welcome to 2026 ✨</h1>
-      <p>
-        I wanted the first thing you see this year to be something special...
-      </p>
-      <button class="btn" onclick="nextSlide(2)">Enter the Journey</button>
+    <div id="s1" class="card">
+        <h1>Happy 2026 ✨</h1>
+        <p>They say the way you start the year defines the rest of it...</p>
+        <button class="btn" onclick="next(1, 2)">Open my heart</button>
     </div>
 
-    <div id="slide2" class="container hidden">
-      <h1>Looking Back... 📸</h1>
-      <p id="typewriter1"></p>
-      <button class="btn" id="btn2" class="hidden" onclick="nextSlide(3)">
-        Continue
-      </button>
+    <div id="s2" class="card hidden">
+        <h1>For You...</h1>
+        <div id="poem-container">
+            <span class="poem-line" id="line1"></span>
+            <span class="poem-line" id="line2"></span>
+            <span class="poem-line" id="line3"></span>
+            <span class="poem-line" id="line4"></span>
+        </div>
+        <button class="btn hidden" id="poem-next" onclick="next(2, 3)">Tell me more</button>
     </div>
 
-    <div id="slide3" class="container hidden">
-      <h1>My Only Wish 🕯️</h1>
-      <p id="typewriter2"></p>
-      <button class="btn" onclick="nextSlide(4)">One last thing...</button>
-    </div>
-
-    <div id="slide4" class="container hidden">
-      <h1>For 2026 and Beyond? ❤️</h1>
-      <p>
-        I don't want to spend another year just being friends. Will you be my
-        girlfriend?
-      </p>
-      <div style="height: 120px; position: relative; margin-top: 20px">
-        <button class="btn" onclick="celebrate()">YES!</button>
-        <button class="btn" id="noBtn" onmouseover="moveNo()">No</button>
-      </div>
-    </div>
-
-    <div id="slide5" class="container hidden">
-      <h1>IT'S OFFICIAL! 😍</h1>
-      <p>
-        Happy New Year, Beautiful. You've made me the happiest person alive.
-      </p>
-      <p style="font-size: 0.9rem; color: var(--gold)">
-        TAP THE SCREEN FOR FIREWORKS!
-      </p>
+    <div id="s3" class="card hidden">
+        <h1>Be Mine? ❤️</h1>
+        <p>I don't want to start 2026 as just a friend. I want you by my side.</p>
+        <p style="font-size: 0.9rem; color: var(--gold);">Give me your answer on Instagram...</p>
+        <button class="btn insta-btn" onclick="openInstagram()">
+            SEND MY ANSWER 📸
+        </button>
     </div>
 
     <script>
-      // Background Orbs
-      for (let i = 0; i < 15; i++) {
-        let orb = document.createElement("div");
-        orb.className = "orb";
-        orb.style.width = Math.random() * 200 + 100 + "px";
-        orb.style.height = orb.style.width;
-        orb.style.left = Math.random() * 100 + "vw";
-        orb.style.top = Math.random() * 100 + "vh";
-        document.body.appendChild(orb);
-      }
+        const poem = [
+            "The stars are bright, the year is new,",
+            "But all I see is a future with you.",
+            "A million wishes, but only one is true,",
+            "To start this year falling for you."
+        ];
 
-      const texts = [
-        "2025 was amazing, but mostly because you were in it. Every moment with you felt like a highlight reel.",
-        "I've realized that as long as I'm with you, every year will be my best year. I have a question to ask...",
-      ];
-
-      function typeWriter(text, elementId, callback) {
-        let i = 0;
-        const elem = document.getElementById(elementId);
-        elem.innerHTML = "";
-        function type() {
-          if (i < text.length) {
-            elem.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, 50);
-          } else if (callback) {
-            callback();
-          }
+        function next(curr, next) {
+            const currentEl = document.getElementById('s' + curr);
+            const nextEl = document.getElementById('s' + next);
+            currentEl.style.opacity = '0';
+            setTimeout(() => {
+                currentEl.classList.add('hidden');
+                nextEl.classList.remove('hidden');
+                setTimeout(() => { nextEl.style.opacity = '1'; }, 50);
+                if(next === 2) startPoem();
+                if(next === 3) celebrate();
+            }, 600);
         }
-        type();
-      }
 
-      function nextSlide(n) {
-        document
-          .querySelectorAll(".container")
-          .forEach((c) => c.classList.add("hidden"));
-        const next = document.getElementById("slide" + n);
-        next.classList.remove("hidden");
-        next.classList.add("fade-in");
-
-        if (n === 2) typeWriter(texts[0], "typewriter1");
-        if (n === 3) typeWriter(texts[1], "typewriter2");
-      }
-
-      function moveNo() {
-        const btn = document.getElementById("noBtn");
-        btn.style.left = Math.random() * 80 + "%";
-        btn.style.top = Math.random() * 80 + "%";
-      }
-
-      function celebrate() {
-        nextSlide(5);
-        var end = Date.now() + 15 * 1000;
-        (function frame() {
-          confetti({
-            particleCount: 5,
-            angle: 60,
-            spread: 55,
-            origin: { x: 0 },
-            colors: ["#ff4d6d", "#d4af37"],
-          });
-          confetti({
-            particleCount: 5,
-            angle: 120,
-            spread: 55,
-            origin: { x: 1 },
-            colors: ["#ff4d6d", "#d4af37"],
-          });
-          if (Date.now() < end) requestAnimationFrame(frame);
-        })();
-      }
-
-      // Tap for more fireworks
-      document.body.addEventListener("click", (e) => {
-        if (!document.getElementById("slide5").classList.contains("hidden")) {
-          confetti({
-            particleCount: 100,
-            startVelocity: 30,
-            spread: 360,
-            origin: {
-              x: e.clientX / window.innerWidth,
-              y: e.clientY / window.innerHeight,
-            },
-          });
+        async function typeLine(text, elementId) {
+            const el = document.getElementById(elementId);
+            for(let i=0; i<text.length; i++) {
+                el.innerHTML += text.charAt(i);
+                await new Promise(r => setTimeout(r, 50));
+            }
         }
-      });
+
+        async function startPoem() {
+            await typeLine(poem[0], 'line1');
+            await typeLine(poem[1], 'line2');
+            await typeLine(poem[2], 'line3');
+            await typeLine(poem[3], 'line4');
+            document.getElementById('poem-next').classList.remove('hidden');
+        }
+
+        function openInstagram() {
+            // REPLACE 'your_username' WITH YOUR ACTUAL INSTAGRAM HANDLE
+            const username = "your_username"; 
+            window.location.href = "https://www.instagram.com/" + username;
+        }
+
+        function celebrate() {
+            const duration = 10 * 1000;
+            const end = Date.now() + duration;
+            (function frame() {
+                confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff007f', '#ffd700'] });
+                confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff007f', '#ffd700'] });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            }());
+        }
     </script>
-  </body>
+</body>
 </html>
